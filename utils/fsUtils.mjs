@@ -19,9 +19,11 @@ const listDir = p => new Promise((resolve, reject) => {
 });
 
 export const loadPuzzle = (puzzleNumber) => {
+	// puzzle is the same for bot Xa and Xb where X is the number of the day
+	const n = puzzleNumber.split('').slice(0, puzzleNumber.length - 1).join('');
 	return new Promise((resolve, reject) => {
 		fs.readFile(
-			path.join(__dirname, `../puzzles/${puzzleNumber}`),
+			path.join(__dirname, `../puzzles/${n}`),
 			'utf8',
 			(e, data) => {
 				if (e) {

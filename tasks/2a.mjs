@@ -1,4 +1,5 @@
 import { Task } from '../utils/task.mjs';
+import { parseLines } from '../utils/parseFile.js';
 
 const isPasswordValid = ({ letter, upper, lower, password }) => {
 	const letterCount = password
@@ -27,9 +28,7 @@ class Task2b extends Task {
 	}
 
 	async runTask() {
-		return this.puzzleData
-			.split('\r\n')
-			.filter(line => !!line.length)
+		return parseLines(this.puzzleData)
 			.map(parsePassword)
 			.filter(isPasswordValid)
 			.length

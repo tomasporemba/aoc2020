@@ -1,5 +1,6 @@
 import { Task } from '../utils/task.mjs';
 import { parsePassword } from './2a.mjs';
+import { parseLines } from '../utils/parseFile.js';
 
 // lower and upper are 1 based indices
 const isPasswordValid = ({ lower, upper, letter, password }) => {
@@ -19,9 +20,7 @@ class Task2b extends Task {
 	}
 
 	async runTask() {
-		return this.puzzleData
-			.split('\r\n')
-			.filter(line => !!line.length)
+		return parseLines(this.puzzleData)
 			.map(parsePassword)
 			.filter(isPasswordValid)
 			.length;

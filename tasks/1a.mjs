@@ -1,4 +1,5 @@
 import { Task } from '../utils/task.mjs';
+import { parseLines } from '../utils/parseFile.js';
 
 export const sumOfNumbers = numbers => {
 	const hashMap = {};
@@ -21,9 +22,7 @@ class Task1A extends Task {
 	}
 
 	async runTask() {
-		const numbers = this.puzzleData
-			.split('\r\n')
-			.filter(line => !!line.length)
+		const numbers = parseLines(this.puzzleData)
 			.map(Number);
 
 		const [numbersLabel] = Object.entries(sumOfNumbers(numbers))

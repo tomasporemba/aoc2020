@@ -16,7 +16,12 @@ listTasks()
 
 		return import(`./tasks/${taskId}.mjs`)
 	})
-	.then(async ({ default: task}) => task.run())
+	.then(async ({ default: task}) => {
+		if (!task) {
+			console.error(`Missing default export from task ${taskId}!`);
+		}
+		return task.run();
+	})
 	.then(console.log)
 	.catch(e => {
 		console.error(e);
